@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_04_04_151642) do
+ActiveRecord::Schema[8.0].define(version: 2025_04_04_161111) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -42,14 +42,25 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_04_151642) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "student_attendances", force: :cascade do |t|
+    t.bigint "student_id", null: false
+    t.date "date"
+    t.boolean "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["student_id"], name: "index_student_attendances_on_student_id"
+  end
+
   create_table "students", force: :cascade do |t|
     t.string "name"
     t.string "student_number"
     t.string "photo"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["student_number"], name: "index_students_on_student_number", unique: true
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "student_attendances", "students"
 end

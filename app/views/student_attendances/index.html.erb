@@ -1,0 +1,29 @@
+<h1>Yoklama Detayları</h1>
+
+<div class="index-container">
+<%= link_to 'Geri Dön', root_path, class: 'btn btn-secondary' %>
+  <div class="table-container">
+        <table>
+      <thead>
+        <tr>
+          <th>Tarih</th>
+          <th>Yoklama</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @student_attendances.each do |attendance| %>
+          <tr>
+            <td><%= attendance.date %></td>
+            <td>
+              <% if attendance.status? %>
+                <p>Geldi</p>
+              <% else %>
+                <p>Gelmedi</p>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

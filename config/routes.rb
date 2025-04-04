@@ -1,10 +1,12 @@
 Rails.application.routes.draw do
+  resources :students do
+    resources :attendances, controller: 'student_attendances', as: 'student_attendances'
+  end  
+
+  root "students#index"
   get "students/new"
   get "students/create"
   get "students/show"
-
-  resources :students
-  root "students#index"
 
   
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
