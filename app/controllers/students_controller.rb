@@ -3,9 +3,14 @@ class StudentsController < ApplicationController
     @students = Student.all
   end
 
+  def show
+    @student = Student.find(params[:id])
+  end
+
   def new
     @student = Student.new
   end
+
 
   def create
     @student = Student.new(student_params)
@@ -14,6 +19,10 @@ class StudentsController < ApplicationController
     else
       render :new
     end
+  end
+
+  def destroy
+    @student = Student.destroy(params[:id])
   end
 
   private
