@@ -23,5 +23,11 @@ module AttendanceSystem
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+
+    config.active_storage.service = :local
+
+    config.after_initialize do
+      ActiveStorage::Current.url_options = { host: 'localhost', protocol: 'http' }
+    end
   end
 end

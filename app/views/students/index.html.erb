@@ -11,6 +11,7 @@
           <th>Fotoğraf</th>
           <th>Öğrenci Numarası</th>
           <th>Yoklama Bilgileri</th>
+          <th>Sil</th>
         </tr>
       </thead>
       <tbody>
@@ -27,6 +28,9 @@
             <td><%= student.student_number %></td>
             <td>
               <%= link_to 'Tüm Yoklamalar', student_student_attendances_path(student), class: "btn btn-primary" %>
+            </td>
+            <td>
+              <%= button_to 'Sil', student_path(student), method: :delete, data: { confirm: "Emin misin?" } %>
             </td>
           </tr>
         <% end %>

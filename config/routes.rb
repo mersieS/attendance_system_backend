@@ -1,14 +1,18 @@
 Rails.application.routes.draw do
   resources :students do
     resources :attendances, controller: 'student_attendances', as: 'student_attendances'
-  end  
+  end
+
+  namespace :api do
+    resources :students
+    resources :attendances, only: [:create]
+  end
 
   root "students#index"
   get "students/new"
   get "students/create"
   get "students/show"
 
-  
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
